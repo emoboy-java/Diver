@@ -1,10 +1,14 @@
 package ru.diver;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+
+import ru.diver.screen.CreditsScreen;
 import ru.diver.screen.GameScreen;
 import ru.diver.screen.MainMenuScreen;
+import ru.diver.screen.RecordsScreen;
 
 public class DiverApplication extends Application{
 
@@ -25,11 +29,19 @@ public class DiverApplication extends Application{
         stage.show();
     }
     private void showMainMenu(){
-        MainMenuScreen mainMenu = new MainMenuScreen(this::showGame);
+        MainMenuScreen mainMenu = new MainMenuScreen(this::showGame,this::showCredits,this::showRecords);
         scene.setRoot(mainMenu);
     }
     private void showGame (){
         GameScreen gameScreen = new GameScreen(this::showMainMenu);
         scene.setRoot(gameScreen);
+    }
+    private void showCredits(){
+        CreditsScreen creditsScreen = new CreditsScreen(this::showMainMenu);
+        scene.setRoot(creditsScreen);
+    }
+    private void showRecords(){
+        RecordsScreen recordsScreen = new RecordsScreen(this::showMainMenu);
+        scene.setRoot(recordsScreen);
     }
 }
